@@ -1,8 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows;
-using Annoyotron.ViewModels;
+﻿using System.Windows;
 
 namespace Annoyotron
 {
