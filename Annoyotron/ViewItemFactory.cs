@@ -23,14 +23,14 @@ namespace Annoyotron
             };
         }
 
-        public static ObservableCollection<ViewItem> CreateObservableViewItems 
+        public static ObservableCollection<ViewItem> CreateViewItems 
             => new(new List<IAuthenticationViewModel>
             {
                 new CardAuthViewModel(),
                 new SinglePinAuthViewModel(),
                 new MultiPinAuthViewModel()
             }
-            .Select(ViewItemFactory.CreateViewItem));
+            .Select(CreateViewItem));
 
     }
 }

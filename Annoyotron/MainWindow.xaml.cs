@@ -17,7 +17,7 @@ namespace Annoyotron
     public partial class MainWindow : Window
     {
         public ObservableCollection<ViewItem> Views { get; } =
-            ViewItemFactory.CreateObservableViewItems;
+            ViewItemFactory.CreateViewItems;
 
         private ViewItem _selectedView;
 
@@ -42,7 +42,6 @@ namespace Annoyotron
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         public MainWindow()
         {
