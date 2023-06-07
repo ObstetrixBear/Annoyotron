@@ -1,15 +1,12 @@
 ﻿using System;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Annoyotron.ViewModels
 {
-    internal class CardAuthenticationViewModel : AuthenticationViewModel
+    internal class CardAuthenticationViewModel : IAuthenticationViewModel
     {
-        public override bool Authenticate()
+        public bool Authenticated { get; }
+
+        public bool Authenticate()
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Annoyotron.ViewModels;
+using System.Windows.Controls;
 
 namespace Annoyotron.Views
 {
@@ -7,8 +8,11 @@ namespace Annoyotron.Views
     /// </summary>
     public partial class MultiUserPinAuthView : UserControl
     {
-        public MultiUserPinAuthView()
+        private IAuthenticationViewModel _viewModel;
+
+        public MultiUserPinAuthView(IAuthenticationViewModel viewModel)
         {
+            _viewModel = viewModel;
             InitializeComponent();
         }
     }

@@ -1,9 +1,13 @@
-﻿using Annoyotron.Views;
+﻿using System.Collections.Generic;
+using Annoyotron.Views;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Annoyotron.ViewModels;
+
 
 namespace Annoyotron
 {
@@ -12,25 +16,14 @@ namespace Annoyotron
     /// </summary>
     public partial class MainWindow : Window
     {
-        public class ViewItem
-        {
-            public ViewItem(UserControl view, string name)
-            {
-                View = view;
-                Name = name;
-            }
-
-            public UserControl View { get; set; }
-
-            public string Name { get; }
-        }
-
-        public ObservableCollection<ViewItem> Views { get; } = new()
-        {
-            new ViewItem(new CardAuthView(), "Card based signing"),
-            new ViewItem(new SingleUserPinAuthView(), "Single-person PIN signing"),
-            new ViewItem(new MultiUserPinAuthView(), "Multi-person PIN signing")
-        };
+        public ObservableCollection<ViewItem> Views { get; } = 
+            new(new List<IAuthenticationViewModel>
+                { 
+                    new CardAuthenticationViewModel(), 
+                    new SingleUserPinAuthenticationViewModel(), 
+                    new MultiUserPinAuthenticationViewModel()
+                }
+            .Select(ViewItemFactory.CreateViewItem));
 
         private ViewItem _selectedView;
 
@@ -39,7 +32,10 @@ namespace Annoyotron
             get => _selectedView;
             set
             {
-                if (_selectedView == value) return;
+                if (_selectedView == value)
+                {
+                    return;
+                }
                 _selectedView = value;
                 ContentControl.Content = _selectedView.View;
                 OnPropertyChanged();

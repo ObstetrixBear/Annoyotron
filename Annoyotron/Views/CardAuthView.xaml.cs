@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using Annoyotron.ViewModels;
 
 namespace Annoyotron.Views
 {
@@ -7,8 +8,11 @@ namespace Annoyotron.Views
     /// </summary>
     public partial class CardAuthView : UserControl
     {
-        public CardAuthView()
+        private IAuthenticationViewModel _viewModel;
+
+        public CardAuthView(IAuthenticationViewModel viewModel)
         {
+            _viewModel = viewModel;
             InitializeComponent();
         }
     }
