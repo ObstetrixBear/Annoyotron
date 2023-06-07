@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using Annoyotron.Views;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Annoyotron.Views;
 
 namespace Annoyotron
 {
@@ -25,7 +25,12 @@ namespace Annoyotron
             public string Name { get; }
         }
 
-        public ObservableCollection<ViewItem> Views { get; } = new ();
+        public ObservableCollection<ViewItem> Views { get; } = new()
+        {
+            new ViewItem(new CardAuthView(), "Card based signing"),
+            new ViewItem(new SingleUserPinAuthView(), "Single-person PIN signing"),
+            new ViewItem(new MultiUserPinAuthView(), "Multi-person PIN signing")
+        };
 
         private ViewItem _selectedView;
 
@@ -48,14 +53,12 @@ namespace Annoyotron
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
         public MainWindow()
         {
             InitializeComponent();
 
             // This should all be handled in XAML.
-            Views.Add(new ViewItem(new CardAuthView(), "Card based signing"));
-            Views.Add(new ViewItem(new SingleUserPinAuthView(), "Single-person PIN signing"));
-            Views.Add(new ViewItem(new MultiUserPinAuthView(), "Multi-person PIN signing"));
             AuthenticationMethodSelector.SelectedIndex = 0;
             SelectedView = Views[0]; // Set the initial selected view
         }
