@@ -9,9 +9,8 @@ namespace Annoyotron
 {
     public static class ViewItemFactory
     {
-        public static ViewItem CreateViewItem(IAuthenticationViewModel authenticationViewModel)
-        {
-            return authenticationViewModel switch
+        public static ViewItem CreateViewItem(IAuthenticationViewModel authenticationViewModel) =>
+            authenticationViewModel switch
             {
                 CardAuthViewModel => 
                     new ViewItem(new CardAuthView(authenticationViewModel), "Card based signing"),
@@ -21,7 +20,6 @@ namespace Annoyotron
                     new ViewItem(new MultiUserPinAuthView(authenticationViewModel), "Multi-person PIN signing"),
                 _ => throw new NotSupportedException("Factory method has no match for this viewmodel.")
             };
-        }
 
         public static ObservableCollection<ViewItem> CreateViewItems 
             => new(new List<IAuthenticationViewModel>
