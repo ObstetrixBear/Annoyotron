@@ -16,14 +16,8 @@ namespace Annoyotron
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<ViewItem> Views { get; } = 
-            new(new List<IAuthenticationViewModel>
-                { 
-                    new CardAuthenticationViewModel(), 
-                    new SingleUserPinAuthenticationViewModel(), 
-                    new MultiUserPinAuthenticationViewModel()
-                }
-            .Select(ViewItemFactory.CreateViewItem));
+        public ObservableCollection<ViewItem> Views { get; } =
+            ViewItemFactory.CreateObservableViewItems;
 
         private ViewItem _selectedView;
 
